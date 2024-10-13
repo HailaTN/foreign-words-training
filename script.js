@@ -117,9 +117,14 @@ function checkMatch() {
         firstCard.classList.add('fade-out');
         secondCard.classList.add('fade-out');
 
+        secondCard.classList.add('correct'); 
+        firstCard.removeEventListener('click', () => selectCard(firstCard));
+        secondCard.removeEventListener('click', () => selectCard(secondCard));
+
         setTimeout(() => {
-            firstCard.remove();
-            secondCard.remove();
+            firstCard.classList.add('hidden'); 
+            secondCard.classList.add('hidden'); 
+
             matchedPairs++;
 
             if (matchedPairs === words.length) {
@@ -131,7 +136,7 @@ function checkMatch() {
     } else {
         secondCard.classList.add('wrong');
         setTimeout(() => {
-            firstCard.classList.remove('selected', 'correct'); 
+            firstCard.classList.remove('selected', 'correct');
             secondCard.classList.remove('selected', 'wrong');
             selectedCards = [];
         }, 500);
